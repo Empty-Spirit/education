@@ -4,11 +4,13 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ViewUI from 'view-design'
+import api from './request/api'
 import 'view-design/dist/styles/iview.css'
 import './style.css'
 import './rem'
 
 Vue.config.productionTip = false
+Vue.prototype.$api = api;
 Vue.use(ViewUI)
 
 /* eslint-disable no-new */

@@ -1,12 +1,8 @@
-import axios from 'axios'
-import Qs from 'qs'
+import { r } from "./http";
 
-
-// if (process.env.NODE_ENV == 'development') {    
-//   axios.defaults.baseURL = 'https://www.baidu.com';} 
-// else if (process.env.NODE_ENV == 'debug') {    
-//   axios.defaults.baseURL = 'https://www.ceshi.com';
-// } 
-// else if (process.env.NODE_ENV == 'production') {    
-//   axios.defaults.baseURL = 'https://www.production.com';
-// }
+const api = {
+  user: {
+    userList: r("GET user/userList.php"),
+  },
+};
+export default api;
