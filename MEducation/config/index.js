@@ -11,11 +11,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api':{
-        target:'http://stzbxinghe.com/stzbxinghe/php',
-        changeOrigin:true,
-        pathRewrite:{
-          '^/api':''
+      '/api': {
+        target: 'http://stzbxinghe.com/stzbxinghe/php',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
         }
       }
     },

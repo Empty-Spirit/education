@@ -6,11 +6,13 @@ import router from './router'
 import ViewUI from 'view-design'
 import api from './request/api'
 import 'view-design/dist/styles/iview.css'
-import './style.css'
-import './rem'
+import './styles/index.scss'
+import './utils/rem'
+import filter from './utils/filter'
 
 Vue.config.productionTip = false
-Vue.prototype.$api = api;
+Vue.prototype.$api = api
+Vue.prototype.$filter = filter
 Vue.use(ViewUI)
 
 /* eslint-disable no-new */
