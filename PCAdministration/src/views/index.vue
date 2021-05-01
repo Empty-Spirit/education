@@ -1,26 +1,12 @@
 <template>
-  <!-- <el-container class="index-con">
-    <el-header class="index-header">
-      <navcon></navcon>
-    </el-header>
-    <el-container class="index-con">
-      <el-aside :class="showclass">
-        <leftnav></leftnav>
-      </el-aside>
-      <el-container class="main-con">
-        <el-main clss="index-main">
-          <router-view></router-view>
-        </el-main>
-      </el-container>
-    </el-container>
-  </el-container> -->
-
   <el-container class="index-con">
     <el-aside :class="showclass">
+      <!-- 左侧导航栏 -->
       <leftnav></leftnav>
     </el-aside>
     <el-container class="main-con">
       <el-header class="index-header">
+        <!-- 右上角菜单 -->
         <navcon></navcon>
       </el-header>
       <el-main clss="index-main">
@@ -35,7 +21,7 @@ import navcon from '../components/navcon.vue'
 import leftnav from '../components/leftnav.vue'
 export default {
   name: 'index',
-  data() {
+  data () {
     return {
       showclass: 'asideshow',
       showtype: false
@@ -47,7 +33,7 @@ export default {
     leftnav
   },
   methods: {},
-  created() {
+  created () {
     // 监听
     this.$root.Bus.$on('toggle', value => {
       if (value) {
@@ -59,9 +45,9 @@ export default {
       }
     })
   },
-  beforeUpdate() {},
+  beforeUpdate () { },
   // 挂载前状态(里面是操作)
-  beforeMount() {
+  beforeMount () {
     // 弹出登录成功
     this.$message({
       message: '登录成功',

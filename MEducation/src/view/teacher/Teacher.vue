@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class='teacher'>
     <Header :title="student ? '发布学员信息' : '发布教员信息'"></Header>
     <Form
       :model="form"
@@ -72,7 +72,7 @@
           <div class="study">
             <Select
               v-model="form.student.week"
-              placeholder="请选择省"
+              placeholder="省"
               :style="{width: '33%'}"
             >
               <Option value="beijing">省</Option>
@@ -81,7 +81,7 @@
             </Select>
             <Select
               v-model="form.student.week"
-              placeholder="请选择市"
+              placeholder="市"
               :style="{width: '33%'}"
             >
               <Option value="beijing">市</Option>
@@ -90,7 +90,7 @@
             </Select>
             <Select
               v-model="form.student.week"
-              placeholder="请选择区"
+              placeholder="区"
               :style="{width: '33%'}"
             >
               <Option value="beijing">区</Option>
@@ -167,7 +167,7 @@
           <div class="study">
             <Select
               v-model="form.teacher.week"
-              placeholder="请选择省"
+              placeholder="省"
               :style="{width: '33%'}"
             >
               <Option value="beijing">省</Option>
@@ -176,7 +176,7 @@
             </Select>
             <Select
               v-model="form.teacher.week"
-              placeholder="请选择市"
+              placeholder="市"
               :style="{width: '33%'}"
             >
               <Option value="beijing">市</Option>
@@ -185,7 +185,7 @@
             </Select>
             <Select
               v-model="form.teacher.week"
-              placeholder="请选择区"
+              placeholder="区"
               :style="{width: '33%'}"
             >
               <Option value="beijing">区</Option>
@@ -290,15 +290,20 @@ export default {
   methods: {}
 }
 </script>
-<style scoped>
-.show-content {
-  position: relative;
-  top: 65px;
-}
-.study {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.1rem;
+<style scoped lang='scss'>
+.teacher {
+  input {
+    width: 400px;
+  }
+  .show-content {
+    position: relative;
+    top: 65px;
+  }
+  .study {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.1rem;
+  }
 }
 </style>
