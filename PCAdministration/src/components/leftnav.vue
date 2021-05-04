@@ -50,7 +50,7 @@
   </el-menu>
 </template>
 <script>
-// import { menu } from '../api/userMG'
+// import { menuList } from '../api/system'
 export default {
   name: 'leftnav',
   data () {
@@ -62,11 +62,14 @@ export default {
   // 创建完毕状态(里面是操作)
   created () {
     // 获取图形验证码
+    // menuList().then(res => {
+    //   // this.changeMenu(res.data)
+    // })
     let res = {
       success: true,
       data: [
         {
-          menuid: 1,
+          menuid: 80,
           icon: 'li-icon-xiangmuguanli',
           menuname: '基础管理',
           hasThird: null,
@@ -77,7 +80,7 @@ export default {
               icon: 'icon-cat-skuQuery',
               menuname: '用户登录日志',
               hasThird: 'N',
-              url: 'goods/Goods',
+              url: 'basics/LoginGournal',
               menus: null
             }
           ]
@@ -94,14 +97,14 @@ export default {
               icon: 'icon-order-manage',
               menuname: '支付记录',
               hasThird: 'N',
-              url: 'pay/Order',
+              url: 'order/PayList',
               menus: null
             }, {
-              menuid: 34,
+              menuid: 79,
               icon: 'icon-order-manage',
               menuname: '提现记录',
               hasThird: 'N',
-              url: 'pay/Withdrawal',
+              url: 'order/Withdrawal',
               menus: null
             }
           ]
@@ -113,18 +116,18 @@ export default {
           url: null,
           menus: [
             {
-              menuid: 76,
+              menuid: 78,
               icon: 'icon-cms-manage',
               menuname: '轮播管理',
               hasThird: 'N',
-              url: 'system/Permission',
+              url: 'system/Carousel',
               menus: null
             }, {
               menuid: 174,
               icon: 'icon-cms-manage',
               menuname: '菜单管理',
               hasThird: 'N',
-              url: 'system/Module',
+              url: 'system/Menu',
               menus: null
             }
           ]
@@ -141,28 +144,28 @@ export default {
               icon: 'icon-cs-manage',
               menuname: '家长管理',
               hasThird: 'N',
-              url: 'system/Dept',
+              url: 'user/Parent',
               menus: null
             }, {
-              menuid: 74,
+              menuid: 76,
               icon: 'icon-cs-manage',
               menuname: '教师管理',
               hasThird: 'N',
-              url: 'system/Dept',
+              url: 'user/Teacher',
               menus: null
             }, {
               menuid: 75,
               icon: 'icon-promotion-manage',
               menuname: '年级管理',
               hasThird: 'N',
-              url: 'system/Variable',
+              url: 'user/Grade',
               menus: null
             }, {
-              menuid: 75,
+              menuid: 77,
               icon: 'icon-promotion-manage',
               menuname: '科目管理',
               hasThird: 'N',
-              url: 'system/Variable',
+              url: 'user/Subject',
               menus: null
             },
             {
@@ -170,7 +173,7 @@ export default {
               icon: 'icon-cus-manage',
               menuname: '用户管理',
               hasThird: 'N',
-              url: 'system/user',
+              url: 'user/User',
               menus: null
             },
             {
@@ -178,35 +181,10 @@ export default {
               icon: 'icon-news-manage',
               menuname: '角色管理',
               hasThird: 'N',
-              url: 'system/Role',
+              url: 'user/Role',
               menus: null
             }
 
-          ]
-        },
-        {
-          menuid: 128,
-          icon: 'li-icon-shangchengxitongtubiaozitihuayuanwenjian91',
-          menuname: '支付管理',
-          hasThird: null,
-          url: null,
-          menus: [
-            {
-              menuid: 129,
-              icon: 'icon-provider-manage',
-              menuname: '支付配置信息',
-              hasThird: 'N',
-              url: 'machine/MachineConfig',
-              menus: null
-            },
-            {
-              menuid: 175,
-              icon: 'icon-provider-manage',
-              menuname: '支付配置',
-              hasThird: 'N',
-              url: 'pay/Config',
-              menus: null
-            }
           ]
         }
       ],
@@ -218,7 +196,50 @@ export default {
     this.$root.Bus.$on('toggle', value => {
       this.collapsed = !value
     })
-  }
+  },
+  methods: {
+    changeMenu (data) {
+      let menuList = []
+      let obj = {}
+      let child = []
+      data.map((item) => {
+        if (item.sort === '1') {
+          console.log(item, '一类')
+          obj = {
+            id: item.id,
+            icon: 'li-icon-xiangmuguanli',
+            menuname: item.menuName,
+            url: null,
+            menus: []
+          }
+          menuList.push(obj)
+        }
+      })
+      this.getChild(data, menuList)
+    },
+    getChild (data, menuList) {
+      let obj = {}
+      data.map(item => {
+        if (item.sort !== '1') {
+          obj = {
+            id: item.id,
+            icon: 'li-icon-xiangmuguanli',
+            menuname: item.menuName,
+            url: null,
+            parentId: item.parentId,
+            menus: []
+          }
+          menuList.map(i => {
+            if (i.id === item.parentId) {
+              i.menus.push(obj)
+            }
+          })
+        }
+      })
+      this.allmenu = menuList
+      console.log(this.allmenu)
+    }
+  },
 }
 </script>
 <style>

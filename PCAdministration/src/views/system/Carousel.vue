@@ -1,8 +1,8 @@
 /**
- * 基础菜单 货道信息管理
+ * 系统管理 轮播管理
  */
 <template>
-  <div>基础菜单 货道信息管理</div>
+  <div>系统管理 轮播管理</div>
 </template>
 
 <script>
@@ -12,7 +12,6 @@ export default {
 </script>
 
 <style>
-
 </style>
 
  

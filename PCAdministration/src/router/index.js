@@ -9,7 +9,17 @@ import index from '@/views/index';
  * 基础菜单
  */
 // 商品管理
-import Goods from '@/views/goods/Goods';
+import LoginGournal from '@/views/basics/LoginGournal'; //用户登录日志
+import PayList from '@/views/order/PayList'; //支付记录
+import Withdrawal from '@/views/order/Withdrawal'; //提现记录
+import Carousel from '@/views/system/Carousel'; //轮播管理
+import Menu from '@/views/system/Menu'; //菜单管理
+import Parent from '@/views/user/Parent'; //家长管理
+import Teacher from '@/views/user/Teacher'; //教师管理
+import Grade from '@/views/user/Grade'; //年级管理
+import Role from '@/views/user/Role'; //角色管理
+import Subject from '@/views/user/Subject'; //科目管理
+import User from '@/views/user/User'; //用户管理
 
 
 // 启用路由
@@ -34,17 +44,105 @@ export default new Router({
             requireAuth: false
         }
     }, {
-        path: '/index',
-        name: '首页',
+      path: '/index',
+      name: '首页',
+      component: index,
+      iconCls: 'el-icon-tickets',
+      children: [{
+          path: '/basics/LoginGournal',
+          name: '商品管理',
+          component: LoginGournal,
+          meta: {
+              requireAuth: true
+          }
+      }]
+  }, {
+        path: '/order',
+        name: '订单管理',
         component: index,
         iconCls: 'el-icon-tickets',
         children: [{
-            path: '/goods/Goods',
-            name: '商品管理',
-            component: Goods,
+            path: '/order/payList',
+            name: '支付记录',
+            component: PayList,
             meta: {
                 requireAuth: true
             }
-        }]
+        },{
+          path: '/order/Withdrawal',
+          name: '提现记录',
+          component: Withdrawal,
+          meta: {
+              requireAuth: true
+          }
+      }]
+    }, {
+        path: '/system',
+        name: '系统管理',
+        component: index,
+        iconCls: 'el-icon-tickets',
+        children: [{
+            path: '/system/Carousel',
+            name: '轮播管理',
+            component: Carousel,
+            meta: {
+                requireAuth: true
+            }
+        },{
+          path: '/system/Menu',
+          name: '菜单管理',
+          component: Menu,
+          meta: {
+              requireAuth: true
+          }
+      }]
+    }, {
+        path: '/user',
+        name: '人员管理',
+        component: index,
+        iconCls: 'el-icon-tickets',
+        children: [{
+            path: '/user/Parent',
+            name: '家长管理',
+            component: Parent,
+            meta: {
+                requireAuth: true
+            }
+        },{
+          path: '/user/Teacher',
+          name: '教师管理',
+          component: Teacher,
+          meta: {
+              requireAuth: true
+          }
+      },{
+        path: '/user/Subject',
+        name: '科目管理',
+        component: Subject,
+        meta: {
+            requireAuth: true
+        }
+      },{
+          path: '/user/Grade',
+          name: '年级管理',
+          component: Grade,
+          meta: {
+              requireAuth: true
+          }
+      },{
+          path: '/user/User',
+          name: '用户管理',
+          component: User,
+          meta: {
+              requireAuth: true
+          }
+      },{
+          path: '/user/Role',
+          name: '角色管理',
+          component: Role,
+          meta: {
+              requireAuth: true
+          }
+      }]
     }]
 })

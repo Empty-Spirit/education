@@ -11,9 +11,10 @@ import router from './router';
 import store from './vuex/store';
 // 引入icon
 import './assets/icon/iconfont.css'
+import api from './api/api'
 // 
-import axios from 'axios';
-Vue.prototype.$axios = axios;
+// import axios from 'axios';
+Vue.prototype.$api = api;
 
 Vue.config.productionTip = false;
 
@@ -47,7 +48,7 @@ router.beforeEach((to, from, next) => {
                      * 防刷新，如果登录，修改路由跳转到登录页面，修改路由为登录后的首页 
                      */
                     next({
-                        path: '/goods/Goods'
+                        path: '/basics/LoginGournal'
                     })
                 }
             } else {

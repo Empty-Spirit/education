@@ -1,8 +1,8 @@
 /**
- * 基础菜单 机器信息管理
+ * 系统管理 菜单管理
  */
 <template>
-  <div>基础菜单 机器信息管理</div>
+  <div>系统管理 菜单管理</div>
 </template>
 
 <script>
