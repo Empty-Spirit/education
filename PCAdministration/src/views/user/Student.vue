@@ -1,8 +1,8 @@
 /**
- * 人员管理 科目管理
+ * 人员管理 学生管理
  */
 <template>
-  <div class="subject">
+  <div class="student">
     <search-header
       :message="message"
       @search='search'
@@ -27,8 +27,65 @@
       <el-table-column
         align="center"
         sortable
-        prop="subjectName"
-        label="科目名称"
+        prop="name"
+        label="用户名"
+        width="120"
+      >
+      </el-table-column>
+      <el-table-column
+        align="center"
+        sortable
+        prop="grade"
+        label="年级"
+        width="120"
+      >
+      </el-table-column>
+      <el-table-column
+        align="center"
+        sortable
+        prop="subject"
+        label="科目"
+        width="120"
+      >
+      </el-table-column>
+      <el-table-column
+        align="center"
+        sortable
+        prop="age"
+        label="年龄"
+        width="120"
+      >
+      </el-table-column>
+      <el-table-column
+        align="center"
+        sortable
+        prop="sex"
+        label="性别"
+        width="120"
+      >
+      </el-table-column>
+      <el-table-column
+        align="center"
+        sortable
+        prop="school"
+        label="学校"
+        width="120"
+      >
+      </el-table-column>
+      <el-table-column
+        align="center"
+        sortable
+        prop="major"
+        label="专业"
+        width="120"
+      >
+      </el-table-column>
+
+      <el-table-column
+        align="center"
+        sortable
+        prop="address"
+        label="地址"
         width="120"
       >
       </el-table-column>
@@ -41,7 +98,7 @@
         min-width="120"
       >
         <template slot-scope="scope">
-          <div>{{scope.row.createTime|timestampToTime}}</div>
+          <div>{{scope.row.create_time|timestampToTime}}</div>
         </template>
       </el-table-column>
       <el-table-column
@@ -76,7 +133,7 @@
 import Pagination from '@/components/Pagination'
 import SearchHeader from '@/components/SearchHeader'
 export default {
-  name: 'Subject',
+  name: 'Student',
   data () {
     return {
       nshow: true, //switch开启
@@ -107,7 +164,7 @@ export default {
     SearchHeader
   },
   mounted () {
-    this.$api.user.subjectList().then(res => {
+    this.$api.user.studentList().then(res => {
       // 将返回的省市区拼装成地址address
       res.data.map(item => {
         item.address = item.province + item.city + item.area
@@ -130,8 +187,5 @@ export default {
 
  
 </style>
-
- 
- 
 
  

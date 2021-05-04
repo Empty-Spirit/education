@@ -14,7 +14,7 @@ import PayList from '@/views/order/PayList'; //支付记录
 import Withdrawal from '@/views/order/Withdrawal'; //提现记录
 import Carousel from '@/views/system/Carousel'; //轮播管理
 import Menu from '@/views/system/Menu'; //菜单管理
-import Parent from '@/views/user/Parent'; //家长管理
+import Student from '@/views/user/Student'; //学生管理
 import Teacher from '@/views/user/Teacher'; //教师管理
 import Grade from '@/views/user/Grade'; //年级管理
 import Role from '@/views/user/Role'; //角色管理
@@ -102,9 +102,9 @@ export default new Router({
         component: index,
         iconCls: 'el-icon-tickets',
         children: [{
-            path: '/user/Parent',
-            name: '家长管理',
-            component: Parent,
+            path: '/user/Student',
+            name: '学生管理',
+            component: Student,
             meta: {
                 requireAuth: true
             }

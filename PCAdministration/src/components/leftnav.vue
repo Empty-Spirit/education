@@ -61,10 +61,10 @@ export default {
   },
   // 创建完毕状态(里面是操作)
   created () {
-    // 获取图形验证码
-    // menuList().then(res => {
-    //   // this.changeMenu(res.data)
-    // })
+    this.$api.system.menuList().then(res => {
+      // console.log(res)
+      // this.changeMenu(res.data)
+    })
     let res = {
       success: true,
       data: [
@@ -142,9 +142,9 @@ export default {
             {
               menuid: 74,
               icon: 'icon-cs-manage',
-              menuname: '家长管理',
+              menuname: '学生管理',
               hasThird: 'N',
-              url: 'user/Parent',
+              url: 'user/Student',
               menus: null
             }, {
               menuid: 76,
@@ -203,7 +203,7 @@ export default {
       let obj = {}
       let child = []
       data.map((item) => {
-        if (item.sort === '1') {
+        if (item.parentId == null) {
           console.log(item, '一类')
           obj = {
             id: item.id,
@@ -215,12 +215,13 @@ export default {
           menuList.push(obj)
         }
       })
-      this.getChild(data, menuList)
+      this.allmenu = menuList
+      // this.getChild(data, menuList)
     },
     getChild (data, menuList) {
       let obj = {}
       data.map(item => {
-        if (item.sort !== '1') {
+        if (item.parentId != '') {
           obj = {
             id: item.id,
             icon: 'li-icon-xiangmuguanli',

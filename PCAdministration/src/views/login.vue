@@ -1,37 +1,76 @@
 <template>
   <div class="login-wrap">
-    <el-form label-position="left" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="demo-ruleForm login-container">
+    <el-form
+      label-position="left"
+      :model="ruleForm"
+      :rules="rules"
+      ref="ruleForm"
+      label-width="0px"
+      class="demo-ruleForm login-container"
+    >
       <h3 class="title">用户登录</h3>
       <el-form-item prop="username">
-        <el-input type="text" v-model="ruleForm.username" auto-complete="off" placeholder="账号"></el-input>
+        <el-input
+          type="text"
+          v-model="ruleForm.username"
+          auto-complete="off"
+          placeholder="账号"
+        ></el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input type="password" v-model="ruleForm.password" auto-complete="off" placeholder="密码"></el-input>
+        <el-input
+          type="password"
+          v-model="ruleForm.password"
+          auto-complete="off"
+          placeholder="密码"
+        ></el-input>
       </el-form-item>
       <el-row>
         <el-col :span="12">
           <el-form-item prop="code">
-            <el-input type="text" v-model="ruleForm.code" auto-complete="off" placeholder="图形验证码" @keyup.enter.native="submitForm('ruleForm')"></el-input>
+            <el-input
+              type="text"
+              v-model="ruleForm.code"
+              auto-complete="off"
+              placeholder="图形验证码"
+              @keyup.enter.native="submitForm('ruleForm')"
+            ></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="12" class="code-box">
-          <img :src="ruleForm.codeimg" alt="" class="codeimg" @click="getcode()">
+        <el-col
+          :span="12"
+          class="code-box"
+        >
+          <img
+            :src="ruleForm.codeimg"
+            alt=""
+            class="codeimg"
+            @click="getcode()"
+          >
         </el-col>
       </el-row>
-      <el-checkbox class="remember" v-model="rememberpwd">记住密码</el-checkbox>
+      <el-checkbox
+        class="remember"
+        v-model="rememberpwd"
+      >记住密码</el-checkbox>
       <el-form-item style="width:100%;">
-        <el-button type="primary" style="width:100%;" @click="submitForm('ruleForm')" :loading="logining">登录</el-button>
+        <el-button
+          type="primary"
+          style="width:100%;"
+          @click="submitForm('ruleForm')"
+          :loading="logining"
+        >登录</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 <script type="text/ecmascript-6">
-import { login } from '../api/userMG'
+// import { login } from '../api/userMG'
 import { setCookie, getCookie, delCookie } from '../utils/util'
 import md5 from 'js-md5'
 export default {
   name: 'login',
-  data() {
+  data () {
     return {
       //定义loading默认为false
       logining: false,
@@ -54,7 +93,7 @@ export default {
     }
   },
   // 创建完毕状态(里面是操作)
-  created() {
+  created () {
     this.$message({
       message: '账号密码及验证码不为空即可',
       type: 'success'
@@ -63,12 +102,12 @@ export default {
     this.getcode()
     // 获取存在本地的用户名密码
     this.getuserpwd()
-    
+
   },
   // 里面的函数只有调用才会执行
   methods: {
     // 获取用户名密码
-    getuserpwd() {
+    getuserpwd () {
       if (getCookie('user') != '' && getCookie('pwd') != '') {
         this.ruleForm.username = getCookie('user')
         this.ruleForm.password = getCookie('pwd')
@@ -76,7 +115,7 @@ export default {
       }
     },
     //获取info列表
-    submitForm(formName) {
+    submitForm (formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.logining = true
