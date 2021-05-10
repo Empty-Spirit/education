@@ -33,7 +33,7 @@
               <div>快速请家教</div>
               <div
                 :style="{ cursor: 'pointer', color: '#f90' }"
-                @click="handleRouter('Teacher', 'student')"
+                @click="handleRouter('Student', 'student')"
               >
                 发布学员信息>
               </div>
@@ -61,68 +61,38 @@
         </Card>
       </div>
       <div>
-        <!-- 科目 -->
-        <Subjects></Subjects>
-        <!-- 学员简介 -->
+        <!-- 遍历data生成各种部分显示的数据 -->
         <cardLabel
-          label="热门学员"
-          src="stuList"
+          v-for="(item,index) in data"
+          :key='index'
+          :label='item.name'
+          :src='item.src'
+          :type='item.type'
         ></cardLabel>
-        <cardLabel
-          label="最新学员"
-          src="stuList"
-        ></cardLabel>
-        <cardLabel
-          label="最新派单记录"
-          src="stuList"
-        ></cardLabel>
-        <!-- 最新学员 -->
-        <!-- <StudentCard title="最新学员"></StudentCard> -->
-        <!-- 派单记录 -->
-        <!-- <StudentCard title="最新派单记录"></StudentCard> -->
       </div>
     </div>
     <div class="footer_room"></div>
-    <div class="footer">
-      <div class="mine">
-        <div
-          @click="handleRouter('Mine')"
-          :style="{ cursor: 'pointer' }"
-        >
-          <div>
-            <Avatar
-              style="background-color: #87d068"
-              shape="square"
-              icon="ios-person"
-              size="large"
-            />
-          </div>
-          <div>我的</div>
-        </div>
-      </div>
-      <div class="btnBox">
-        <Button
-          type="warning"
-          class="btn"
-          @click="handleRouter('Teacher', 'student')"
-        >发布家教需求</Button>
-      </div>
-    </div>
+    <bottom-label></bottom-label>
   </div>
 </template>
 <script>
 import cardLabel from '@/components/cardLabel'
-import StudentCard from '@/components/StudentCard'
-import Subjects from '@/components/Subjects'
+import BottomLabel from '@/components/BottomLabel'
 export default {
   name: 'Main',
   components: {
     cardLabel,
-    StudentCard,
-    Subjects
+    BottomLabel
   },
   data () {
-    return {}
+    return {
+      data: [
+        { name: '家教信息', src: 'stuList', type: '1' },
+        { name: '热门学员', src: 'stuList', type: '1' },
+        { name: '最新学员', src: 'stuList', type: '2' },
+        { name: '最新派单记录', src: 'stuList', type: '2' }
+      ]
+    }
   },
   methods: {
     handleRouter (val, data) {
@@ -135,8 +105,6 @@ export default {
     }
   },
   mounted () {
-    // let high = document.documentElement.clientHeight;
-    // (document.querySelector('.home-content').style.height = high - 80 + 'px'),
     this.$api.user.userList().then(res => {
       console.log(res)
     })
@@ -159,35 +127,11 @@ export default {
   .footer_room {
     height: 80px;
   }
-  .footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 80px;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top: 4px solid #eee;
-    background: #fff;
-  }
-  .mine {
-    flex: 1;
-    height: 0.6rem;
-    border-radius: 0.04rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+
   .btnBox {
     flex: 2;
   }
-  .btnBox .btn {
-    width: 3rem;
-    height: 50px;
-    cursor: pointer;
-  }
+
   .topCenter {
     margin: 0.1rem 0;
     display: flex;
@@ -215,7 +159,7 @@ export default {
     height: 0.6rem;
     width: 0.6rem;
   }
-  .banner{
+  .banner {
     position: absolute;
     top: 0;
     left: 0;

@@ -18,8 +18,14 @@
         </Col>
       </Row>
     </div>
-    <stuCard v-if="label === '热门学员'"></stuCard>
-    <StudentCard v-if="label === '最新学员' || label === '最新派单记录'"></StudentCard>
+    <stuCard
+      v-if="type === '1'"
+      :status='label'
+    ></stuCard>
+    <StudentCard
+      v-if="type === '2'"
+      :status='label'
+    ></StudentCard>
   </div>
 </template>
 <script>
@@ -36,6 +42,9 @@ export default {
     src: {
       type: String,
       default: ''
+    },
+    type: {
+      type: String
     }
   },
   components: {
@@ -45,22 +54,12 @@ export default {
   },
   data () {
     return {
-      header: false,
-      status: 1
+      header: false
     }
-  },
-  mounted () {
-    // console.log(this.label, this.src)
   },
   methods: {
     goAll () {
-      // status是判断对全部学员 最新学员 最新派单记录 三个模块中的哪个模块全部
-      if (this.label === '热门学员') {
-        this.status = 1
-      } else {
-        this.status = 2
-      }
-      this.$router.push({ path: this.src, query: { status: this.status, type: 1, label: this.label } })
+      this.$router.push({ path: this.src, query: { label: this.label, type: this.type } })
     }
   }
 }

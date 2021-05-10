@@ -28,6 +28,7 @@ export default {
 </script>
 <style scoped>
 .header {
+  width: 375px;
   line-height: 50px;
   background-color: #fff;
   border-bottom: 2px solid #eee;

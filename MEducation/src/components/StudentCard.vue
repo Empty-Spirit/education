@@ -1,33 +1,30 @@
 <template>
-  <div>
-    <div v-show="header"><Header :title="title"></Header></div>
-    <div class='studentCard'>
-      <List border>
-        <ListItem
-          v-for="item in showList"
-          :key="item.id"
-        >
-          <div style="flex: 1">
-            <Row :wrap="false">
-              <Col flex="auto"><strong class="desc">{{item.name}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{item.name}}</strong></Col>
-              <Col flex="none">
-              <div class="time">
-                2020
-              </div>
-              </Col>
-            </Row>
-            <Row :wrap="false">
-              <Col flex="auto">{{item.name}} </Col>
-              <Col flex="none">
-              <div class="time">
-                2020-5
-              </div>
-              </Col>
-            </Row>
-          </div>
-        </ListItem>
-      </List>
-    </div>
+  <div class='studentCard card_header'>
+    <List border>
+      <ListItem
+        v-for="item in showList"
+        :key="item.id"
+      >
+        <div style="flex: 1">
+          <Row :wrap="false">
+            <Col flex="auto"><strong class="desc">{{item.name}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{item.name}}</strong></Col>
+            <Col flex="none">
+            <div class="time">
+              2020
+            </div>
+            </Col>
+          </Row>
+          <Row :wrap="false">
+            <Col flex="auto">{{item.name}} </Col>
+            <Col flex="none">
+            <div class="time">
+              2020-5
+            </div>
+            </Col>
+          </Row>
+        </div>
+      </ListItem>
+    </List>
   </div>
 </template>
 <script>
@@ -35,14 +32,28 @@ import Header from './Header'
 export default {
   name: 'StudentCard',
   components: { Header },
+  props: {
+    status: {
+      type: String
+    }
+  },
   data () {
     return {
-      list: [
-        { id: 1, name: '全部', status: '全部' },
-        { id: 2, name: '11', status: 'aa' },
-        { id: 3, name: '全部', status: '12313' },
-        { id: 4, name: 'aaa', status: '全部' },
-        { id: 5, name: '11', status: '12313' }
+      type: 0,
+      list: [],
+      newStudent: [
+        { id: 1, name: '新学员一', status: '全部' },
+        { id: 2, name: '新学员二', status: 'aa' },
+        { id: 3, name: '新学员三', status: '12313' },
+        { id: 4, name: '新学员四', status: '全部' },
+        { id: 5, name: '新学员五', status: '12313' }
+      ],
+      newOrder: [
+        { id: 1, name: '新单一', status: '全部' },
+        { id: 2, name: '新单二', status: 'aa' },
+        { id: 3, name: '新单三', status: '12313' },
+        { id: 4, name: '新单四', status: '全部' },
+        { id: 5, name: '新单五', status: '12313' }
       ],
       header: false,
       showList: [],
@@ -58,20 +69,15 @@ export default {
     }
   },
   mounted () {
-    // type判断是首页部分数据展示还是list全部数据展示 0部分 1全部
-    this.type = this.$route.query.type
-    if(this.type == 1){
-      this.header = true
-      this.title = this.$route.query.label
-      document.querySelector('.studentCard').style.position = 'relative';
-      document.querySelector('.studentCard').style.top = '65px';
-    }
+    // 默认部分数据显示 type 为0  label和status判断要显示的是最新学员 还是最新派单记录
+    this.type = this.$route.query.label ? 1 : 0
+    this.list = this.$route.query.label === '最新学员' || this.status === '最新学员' ? this.newStudent : this.newOrder
     this.showList = this.$filter.showList(this.type, this.list)
   }
 }
 </script>
 <style scoped lang='scss'>
-.studentsCard {
+.studentCard {
   margin: 0.1rem 0;
   .ivu-col {
     text-align: left;

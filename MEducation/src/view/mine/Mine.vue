@@ -1,10 +1,19 @@
 <template>
-  <div>
+  <div class="mine">
     <Header title="我的"></Header>
     <List
       border
       class="list-content"
     >
+      <ListItem class='mine_header'>
+        <div>
+          <img
+            src="https://t7.baidu.com/it/u=4162611394,4275913936&fm=193&f=GIF"
+            alt=""
+          >
+          <div class="mine_name">昵称</div>
+        </div>
+      </ListItem>
       <ListItem>
         <div
           class="list-items"
@@ -86,15 +95,32 @@ export default {
   }
 }
 </script>
-<style scoped>
-.list-content {
-  position: relative;
-  top: 65px;
-}
-.list-items {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+<style scoped lang="scss">
+.mine {
+  .mine_header {
+    height: 100px;
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .mine_name {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 100px;
+    }
+  }
+  .list-content {
+    position: relative;
+    top: 65px;
+  }
+  .list-items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
 }
 </style>

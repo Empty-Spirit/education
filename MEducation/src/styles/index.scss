@@ -37,4 +37,43 @@
   .ivu-select{
     width: 20px;
   }
+  .ivu-radio-group{
+    margin-left: 35px;
+  }
+}
+.student{
+  input{
+    width: 230px;
+  }
+  textarea{
+    width: 230px;
+  }
+  .study{
+    width: 230px;
+    text-align: center;
+    margin-left: 35px;
+  }
+  .address{
+    width: 230px;
+    margin-left: 32px;
+    margin-bottom: 20px;
+  }
+  .ivu-select{
+    width: 230px;
+  }
+  .ivu-radio-group{
+    margin-left: 35px;
+  }
+}
+
+// 头部信息筛选
+.search{
+  .ivu-select{
+    width: 90px !important;
+    margin-right: 5px;
+  }
+  .ivu-input-wrapper{
+    width: 90px !important;
+    margin-right: 5px;  
+  }
 }

@@ -7,6 +7,7 @@ import Mine from '@/view/mine/Mine'
 import Teacher from '@/view/teacher/Teacher'
 import List from '@/view//mine/orderList'
 import StuList from '@/view/student/stuList'
+import Student from '@/view/student/Student'
 
 Vue.use(Router)
 
@@ -40,6 +41,10 @@ export default new Router({
       path: '/stuList',
       name: 'StuList',
       component: StuList
+    }, {
+      path: '/Student',
+      name: 'Student',
+      component: Student
     }
   ]
 })
