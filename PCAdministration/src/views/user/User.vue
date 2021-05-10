@@ -6,6 +6,7 @@
     <search-header
       :message="message"
       @search='search'
+      @add='handleEdit'
     ></search-header>
     <!--列表-->
     <el-table
@@ -105,6 +106,7 @@ export default {
         total: 10
       },
       message: {
+        tab: 'user',
         name: '用户管理',
         searchData: [
           {
@@ -140,7 +142,9 @@ export default {
       })
     },
     selectChange () { },
-    handleEdit () { }
+    handleEdit (message) {
+      console.log(message)
+    }
   },
 }
 </script>

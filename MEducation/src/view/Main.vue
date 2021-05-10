@@ -193,6 +193,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 4.1rem;
   }
   .topCenter .ivu-card {
     flex: 1;
@@ -213,6 +214,12 @@ export default {
   .avatar-imgs {
     height: 0.6rem;
     width: 0.6rem;
+  }
+  .banner{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 }
 </style>

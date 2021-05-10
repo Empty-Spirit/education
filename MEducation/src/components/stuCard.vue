@@ -1,40 +1,45 @@
 <!--学生卡片-->
 <template>
-  <div class="stuCard">
-    <Card
-      :dis-hover="true"
-      v-for="item in showList"
-      :key="item.id"
-    >
-      <Row>
-        <Col span="6">
-        <img
-          :src="item.img"
-          class="student-img"
-        />
-        </Col>
-        <Col span="18">
-        <Row :wrap="false">
-          <Col flex="auto">
-          <strong>{{item.name}}&nbsp;&nbsp;&nbsp;&nbsp;<span class="desc">{{item.des}}</span></strong>
+  <div>
+    <div v-show="header"><Header :title="title"></Header></div>
+    <div class="stuCard">
+      <Card
+        :dis-hover="true"
+        v-for="item in showList"
+        :key="item.id"
+      >
+        <Row>
+          <Col span="6">
+          <img
+            :src="item.img"
+            class="student-img"
+          />
           </Col>
-          <Col flex="none">
-          <div class="time">
-            2020-4
-          </div>
+          <Col span="18">
+          <Row :wrap="false">
+            <Col flex="auto">
+            <strong>{{item.name}}&nbsp;&nbsp;&nbsp;&nbsp;<span class="desc">{{item.des}}</span></strong>
+            </Col>
+            <Col flex="none">
+            <div class="time">
+              2020-4
+            </div>
+            </Col>
+          </Row>
+
+          <div>{{item.school}}&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.school}}</span></div>
+          <div>学习科目：<span>{{item.school}}</span></div>
+          <div>{{item.school}}</div>
           </Col>
         </Row>
-
-        <div>{{item.school}}&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.school}}</span></div>
-        <div>学习科目：<span>{{item.school}}</span></div>
-        <div>{{item.school}}</div>
-        </Col>
-      </Row>
-    </Card>
+      </Card>
+    </div>
   </div>
 </template>
 <script>
+import Header from './Header.vue'
 export default {
+  components: { Header },
   name: 'StuCard',
   data () {
     return {
@@ -45,12 +50,20 @@ export default {
         { name: 'zhang', school: 'sc', des: 'ee', id: 3, img: 'https://guanli.jiajiao114.com/admin/img/banner.png' },
         { name: 'zhang', school: 'sc', des: 'ee', id: 4, img: 'https://guanli.jiajiao114.com/admin/img/banner.png' }
       ],
-      showList: [] // 用来显示的数据
+      showList: [], // 用来显示的数据
+      header: false,
+      title: ''
     }
   },
   mounted () {
     // type判断是首页部分数据展示还是list全部数据展示 0部分 1全部
     this.type = this.$route.query.type
+    if(this.type == 1) {
+      this.header = true
+      this.title = this.$route.query.label
+      document.querySelector('.stuCard').style.position = 'relative';
+      document.querySelector('.stuCard').style.top = '65px';
+    }
     this.showList = this.$filter.showList(this.type, this.studentsList)
   }
 }

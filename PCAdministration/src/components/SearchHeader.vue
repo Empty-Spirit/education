@@ -91,6 +91,9 @@ export default {
     search () {
       this.$emit('search', this.message)
     },
+    handleEdit () {
+      this.$emit('add', this.message.tab)
+    }
   },
 }
 </script>

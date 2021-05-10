@@ -60,7 +60,7 @@ export default {
       } else {
         this.status = 2
       }
-      this.$router.push({ path: this.src, query: { status: this.status, type: 1 } })
+      this.$router.push({ path: this.src, query: { status: this.status, type: 1, label: this.label } })
     }
   }
 }
@@ -70,6 +70,7 @@ export default {
   .title {
     display: inline-block;
     margin-left: 80px;
+    line-height: 50px;
   }
 }
 </style>
