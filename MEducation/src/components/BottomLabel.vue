@@ -8,29 +8,6 @@
         :key="index"
         @click="go(item.src)"
       >{{item.name}}</div>
-      <!-- <div class="mine">
-        <div
-          @click="handleRouter('Mine')"
-          :style="{ cursor: 'pointer' }"
-        >
-          <div>
-            <Avatar
-              style="background-color: #87d068"
-              shape="square"
-              icon="ios-person"
-              size="large"
-            />
-          </div>
-          <div>我的</div>
-        </div>
-      </div>
-      <div class="btnBox">
-        <Button
-          type="warning"
-          class="btn"
-          @click="handleRouter('Teacher', 'student')"
-        >发布家教需求</Button>
-      </div> -->
     </div>
   </div>
 </template>
