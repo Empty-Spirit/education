@@ -141,7 +141,7 @@ export default {
       userData: [],
       loading: '',
       pageparm: {
-        currentPage: 1,
+        pageNo: 1,
         pageSize: 10,
         total: 10
       },
@@ -156,7 +156,7 @@ export default {
             searchLabel: '输入手机号'
           }
         ],
-      }
+      },
     }
   },
   components: {
@@ -164,7 +164,7 @@ export default {
     SearchHeader
   },
   mounted () {
-    this.$api.user.teacherList().then(res => {
+    this.$api.user.teacherList(this.pageparm).then(res => {
       // 将返回的省市区拼装成地址address
       res.data.map(item => {
         item.address = item.province + item.city + item.area

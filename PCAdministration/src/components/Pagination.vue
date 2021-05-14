@@ -2,24 +2,34 @@
 * 分页组件
 */ 
 <template>
-  <el-pagination class="page-box" @size-change="handleSizeChange" @current-change="handleCurrentChange" background :current-page="childMsg.currentPage" :page-sizes="[10, 20, 30, 40]" :page-size="childMsg.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="childMsg.total">
+  <el-pagination
+    class="page-box"
+    @size-change="handleSizeChange"
+    @current-change="handleCurrentChange"
+    background
+    :current-page="childMsg.currentPage"
+    :page-sizes="[10, 20, 30, 40]"
+    :page-size="childMsg.pageSize"
+    layout="total, sizes, prev, pager, next, jumper"
+    :total="childMsg.total"
+  >
   </el-pagination>
 </template>
 <script>
 export default {
   name: 'Pagination',
   props: ['childMsg'],
-  data() {
+  data () {
     return {
       pageparm: {
-        currentPage: this.childMsg.currentPage,
+        currentPage: this.childMsg.pageNo,
         pageSize: this.childMsg.pageSize
       }
     }
   },
-  created() {},
+  created () { },
   methods: {
-    handleSizeChange(val) {
+    handleSizeChange (val) {
       /**
        * 子传父
        * 参数1 父元素方法
@@ -28,7 +38,7 @@ export default {
       this.pageparm.pageSize = val
       this.$emit('callFather', this.pageparm)
     },
-    handleCurrentChange(val) {
+    handleCurrentChange (val) {
       /**
        * 子传父
        * 参数1 父元素方法

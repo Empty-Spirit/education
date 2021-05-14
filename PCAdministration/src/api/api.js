@@ -4,7 +4,8 @@ import { loginreq, req } from './axiosFun';
 const api = {
   // 系统管理
   system: {
-    menuList: (params) => { return req("post", "/api/systemMenuController/selectSystemMenuByCond", params) } //菜单列表
+    menuList: (params) => { return req("post", "/api/systemMenuController/selectSystemMenuByCond", params) }, //菜单列表
+    carouselList: (params) => {return req("post", "/api/slideShowController/saveSlideShow",params)}//轮播图列表
   },
   // 人员管理
   user:{
@@ -14,7 +15,14 @@ const api = {
     subjectList:(params) => { return req("post", "/api/subjectInfoController/selectSubjectInfoByCond", params) }, //科目列表
     roleList:(params) => { return req("post", "/api/systemRoleController/selectSystemRoleByCond", params) }, //角色列表
     userList:(params) => { return req("post", "/api/systemUserController/selectSystemUserByCond", params) }, //用户列表
-  }
+  },
+  teacher:{},
+  student:{
+    stuAdd:(params) => {return req("post /api/studentInfoController/saveStudentInfo",params)} ,//添加学生
+  },
+  grade:{},
+  subject:{},
+  role:{}
 }
 export default api
 

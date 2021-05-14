@@ -101,7 +101,7 @@ export default {
       userData: [],
       loading: '',
       pageparm: {
-        currentPage: 1,
+        pageNo: 1,
         pageSize: 10,
         total: 10
       },
@@ -125,8 +125,8 @@ export default {
     SearchHeader
   },
   mounted () {
-    this.$api.user.userList().then(res => {
-      this.userData = res.data
+    this.$api.user.userList(this.pageparm).then(res => {
+      this.userData = res.dataInfo
     })
   },
   methods: {

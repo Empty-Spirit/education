@@ -49,7 +49,7 @@ const req = (method, url, params) => {
         //         return ret
         //     }
         // ]
-    }).then(res => res.data);
+    }).then(res => res.data.data);
 };
 
 const change =  (formData) => {

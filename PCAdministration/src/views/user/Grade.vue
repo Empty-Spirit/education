@@ -32,6 +32,14 @@
         width="120"
       >
       </el-table-column>
+      <el-table-column
+        align="center"
+        sortable
+        prop="createUser"
+        label="创建人"
+        width="120"
+      >
+      </el-table-column>
 
       <el-table-column
         align="center"
@@ -41,7 +49,7 @@
         min-width="120"
       >
         <template slot-scope="scope">
-          <div>{{scope.row.creatTime|timestampToTime}}</div>
+          <div>{{scope.row.createTime}}</div>
         </template>
       </el-table-column>
       <el-table-column
@@ -84,7 +92,7 @@ export default {
       userData: [],
       loading: '',
       pageparm: {
-        currentPage: 1,
+        pageNo: 1,
         pageSize: 10,
         total: 10
       },
@@ -107,8 +115,8 @@ export default {
     SearchHeader
   },
   mounted () {
-    this.$api.user.gradeList().then(res => {
-      this.userData = res.data
+    this.$api.user.gradeList(this.pageparm).then(res => {
+      this.userData = res.dataInfo
     })
   },
   methods: {

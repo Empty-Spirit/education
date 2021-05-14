@@ -141,7 +141,7 @@ export default {
       userData: [],
       loading: '',
       pageparm: {
-        currentPage: 1,
+        pageNo: 1,
         pageSize: 10,
         total: 10
       },
@@ -164,7 +164,7 @@ export default {
     SearchHeader
   },
   mounted () {
-    this.$api.user.studentList().then(res => {
+    this.$api.user.studentList(this.pageparm).then(res => {
       // 将返回的省市区拼装成地址address
       res.data.map(item => {
         item.address = item.province + item.city + item.area
