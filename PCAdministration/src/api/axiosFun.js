@@ -28,29 +28,43 @@ const loginreq = (method, url, params) => {
 // 通用公用方法
 const req = (method, url, params) => {
     return axios({
-        method: method,
-        url: url,
+        method: method.toUpperCase(),
+        url: url + change(params),
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             token: localStorage.getItem('logintoken')
         },
-        data: params,
+        data: "",
         traditional: true,
-        transformRequest: [
-            function(data) {
-                let ret = ''
-                for (let it in data) {
-                    ret +=
-                        encodeURIComponent(it) +
-                        '=' +
-                        encodeURIComponent(data[it]) +
-                        '&'
-                }
-                return ret
-            }
-        ]
+        // transformRequest: [ 
+        //     function(data) {
+        //         let ret = ''
+        //         for (let it in data) {
+        //             ret +=
+        //                 encodeURIComponent(it) +
+        //                 '=' +
+        //                 encodeURIComponent(data[it]) +
+        //                 '&'
+        //         }
+        //         return ret
+        //     }
+        // ]
     }).then(res => res.data);
 };
+
+const change =  (formData) => {
+  let queryString = ''
+        Object.keys(formData).forEach(key => {
+          queryString += `${key}=${formData[key]}&`
+        })
+        if (queryString) { // id=1&xxx=abc&
+          // 去除最后的&
+          queryString = queryString.substring(0, queryString.length-1)
+          // 接到url
+        }
+          return '?' + queryString
+};
+
 
 export {
     loginreq,
