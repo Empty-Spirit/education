@@ -62,7 +62,8 @@ export default {
   // 创建完毕状态(里面是操作)
   created () {
     let obj = {
-      info: '{"pageSize":1,pageNo":1}'
+      pageSize: 1,
+      pageNo: 1
     }
     this.$api.system.menuList(obj).then(res => {
       console.log(res)

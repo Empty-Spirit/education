@@ -29,12 +29,12 @@ const loginreq = (method, url, params) => {
 const req = (method, url, params) => {
     return axios({
         method: method.toUpperCase(),
-        url: url + change(params),
+        url: url ,
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',
             token: localStorage.getItem('logintoken')
         },
-        data: "",
+        data: params,
         traditional: true,
         // transformRequest: [ 
         //     function(data) {
