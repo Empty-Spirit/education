@@ -6,6 +6,7 @@
     <search-header
       :message="message"
       @search='search'
+      @add='handleEdit'
     ></search-header>
     <!--列表-->
     <el-table
@@ -66,14 +67,37 @@
             type="danger"
             @click="deleteUser(scope.$index, scope.row)"
           >删除</el-button>
-          <el-button
-            size="mini"
-            type="success"
-            @click="resetpwd(scope.$index, scope.row)"
-          >重置密码</el-button>
         </template>
       </el-table-column>
     </el-table>
+
+    <!-- 弹窗 -->
+    <el-dialog
+      title="添加年级"
+      :visible.sync="showAdd"
+    >
+      <el-form :model="form">
+        <el-form-item
+          label="年级名称"
+          :label-width="formLabelWidth"
+        >
+          <el-input
+            v-model="form.gradeName"
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
+      </el-form>
+      <div
+        slot="footer"
+        class="dialog-footer"
+      >
+        <el-button @click="close">取 消</el-button>
+        <el-button
+          type="primary"
+          @click="gradeAdd"
+        >确 定</el-button>
+      </div>
+    </el-dialog>
 
     <!-- 分页组件 -->
     <Pagination v-bind:child-msg="pageparm"></Pagination>
@@ -87,6 +111,8 @@ export default {
   name: 'Grade',
   data () {
     return {
+      showAdd: false,//是否显示弹窗
+      formLabelWidth: '120px',
       nshow: true, //switch开启
       fshow: false, //switch关闭
       userData: [],
@@ -107,6 +133,9 @@ export default {
             searchLabel: '输入手机号'
           }
         ],
+      },
+      form: {
+        gradeName: ''
       }
     }
   },
@@ -115,11 +144,14 @@ export default {
     SearchHeader
   },
   mounted () {
-    this.$api.user.gradeList(this.pageparm).then(res => {
-      this.userData = res.dataInfo
-    })
+    this.getGradeList()
   },
   methods: {
+    getGradeList () {
+      this.$api.grade.gradeList(this.pageparm).then(res => {
+        this.userData = res.dataInfo
+      })
+    },
     search (data) {
       let obj = {
         id: '',
@@ -130,7 +162,41 @@ export default {
       })
     },
     selectChange () { },
-    handleEdit () { }
+    handleEdit (value, label) {
+      if (label) {
+        this.form = label
+      }
+      this.showAdd = true
+    },
+    close () {
+      this.form = {
+        gradeName: ''
+      }
+      this.showAdd = false
+    },
+    gradeAdd () {
+      if (this.form.gradeName === '') {
+        this.$message({
+          message: '年级名称不能为空',
+          type: 'error'
+        });
+      } else {
+        let obj = {}
+        if (this.form.id) {
+          obj = {
+            gradeName: this.form.gradeName,
+            id: this.form.id
+          }
+        }
+        this.$api.grade.gradeAdd(obj).then(res => {
+          this.getGradeList()
+          this.showAdd = false
+          this.form = {
+            gradeName: ''
+          }
+        })
+      }
+    }
   },
 }
 </script>

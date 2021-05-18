@@ -11,16 +11,18 @@ const api = {
   user:{
     teacherList:(params) => { return req("post", "/api/teacherInfoController/selectTeacherInfoByCond", params) }, //教师列表
     studentList:(params) => { return req("post", "/api/studentInfoController/selectStudentInfoByCond", params) }, //学生列表
-    gradeList:(params) => { return req("post", "/api/gradeInfoController/selectGradeInfoByCond", params) }, //年级列表
     subjectList:(params) => { return req("post", "/api/subjectInfoController/selectSubjectInfoByCond", params) }, //科目列表
     roleList:(params) => { return req("post", "/api/systemRoleController/selectSystemRoleByCond", params) }, //角色列表
     userList:(params) => { return req("post", "/api/systemUserController/selectSystemUserByCond", params) }, //用户列表
   },
   teacher:{},
   student:{
-    stuAdd:(params) => {return req("post /api/studentInfoController/saveStudentInfo",params)} ,//添加学生
+    stuAdd:(params) => {return req("post","/api/studentInfoController/saveStudentInfo",params)} ,//添加学生
   },
-  grade:{},
+  grade:{
+    gradeList:(params) => { return req("post", "/api/gradeInfoController/selectGradeInfoByCond", params) }, //年级列表
+    gradeAdd:(params) => {return req("post","/api/gradeInfoController/saveGradeInfo", params)} ,//添加年级
+  },
   subject:{},
   role:{}
 }

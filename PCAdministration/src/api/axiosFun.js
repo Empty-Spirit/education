@@ -34,6 +34,7 @@ const req = (method, url, params) => {
             'Content-Type': 'application/json',
             token: localStorage.getItem('logintoken')
         },
+        params:params,
         data: params,
         traditional: true,
         // transformRequest: [ 
